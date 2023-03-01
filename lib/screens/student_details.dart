@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:student_details/database/functions/db_functions.dart';
 import 'package:student_details/database/functions/student_list.dart';
 import 'package:student_details/screens/add_student.dart';
@@ -9,7 +10,12 @@ class StudentDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getAllStudents();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        Provider.of<StudentDatabse>(context, listen: false).getAllStudents();
+      },
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Students Record'),
@@ -26,10 +32,9 @@ class StudentDetails extends StatelessWidget {
           )
         ],
       ),
-      body: ValueListenableBuilder(
-        valueListenable: studentListNotifier,
+      body: Consumer<StudentDatabse>(
         builder: (context, value, child) {
-          return value.isEmpty
+          return value.studentDB.isEmpty
               ? const Center(child: Text("No data found"))
               : const StudentListBuilder();
         },

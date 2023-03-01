@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../database/functions/db_functions.dart';
 
@@ -20,7 +21,9 @@ class DeleteButton extends StatelessWidget {
             content: const Text('Do you want to delete?'),
             actions: [
               TextButton(
-                  onPressed: () => deleteStudent(index, ctx1),
+                  onPressed: () =>
+                      Provider.of<StudentDatabse>(context, listen: false)
+                          .deleteStudent(index, ctx1),
                   child: const Text('Yes')),
               TextButton(
                 onPressed: () => Navigator.pop(ctx1),

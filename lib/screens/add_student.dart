@@ -55,6 +55,7 @@ class AddStudentData extends StatelessWidget {
                   labelText: "Phone Number",
                   validateText: 'Enter valid number',
                   keyType: TextInputType.number,
+                  isPhone: true,
                 ),
                 // -------------- Button -------------- //
                 Padding(

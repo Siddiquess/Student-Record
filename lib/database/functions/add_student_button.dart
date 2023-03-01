@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:student_details/database/functions/db_functions.dart';
 import 'package:student_details/screens/add_student.dart';
 
@@ -10,9 +11,13 @@ Future addStudentButtonClick(BuildContext context) async {
   final email = emailController.text.trim();
   final phone = phoneController.text.trim();
 
-  final student =
-      StudentModel(name: name, age: age, email: email, phone: phone,);
-  addStudent(student);
+  final student = StudentModel(
+    name: name,
+    age: age,
+    email: email,
+    phone: phone,
+  );
+  Provider.of<StudentDatabse>(context, listen: false).addStudent(student);
   snackBar(context, 'Student Added');
 
   nameController.clear();
@@ -28,8 +33,8 @@ Future addStudentButtonClick(BuildContext context) async {
 void snackBar(BuildContext context, String info) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      duration:const Duration(seconds: 1),
-      width: MediaQuery.of(context).size.width*0.5,
+      duration: const Duration(seconds: 1),
+      width: MediaQuery.of(context).size.width * 0.5,
       behavior: SnackBarBehavior.floating,
       shape: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
       content: SizedBox(
@@ -37,7 +42,10 @@ void snackBar(BuildContext context, String info) {
         child: Center(
           child: Text(
             info,
-            style: const TextStyle(color: Colors.white, fontSize: 19),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 19,
+            ),
           ),
         ),
       ),

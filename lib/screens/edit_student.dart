@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:student_details/database/functions/db_functions.dart';
 import '../database/models/student_model.dart';
 import '../widgets/text_form_field.dart';
@@ -88,6 +89,7 @@ class _EditStudentState extends State<EditStudent> {
                     labelText: "Phone Number",
                     validateText: 'Enter valid number',
                     keyType: TextInputType.number,
+                    isPhone: true,
                   ),
                   // -------------- Button -------------- //
                   ElevatedButton(
@@ -99,7 +101,8 @@ class _EditStudentState extends State<EditStudent> {
                           email: emailController.text,
                           phone: phoneController.text,
                         );
-                        updateStudent(widget.index, value, context);
+                        Provider.of<StudentDatabse>(context, listen: false)
+                            .updateStudent(widget.index, value, context);
                       }
                     },
                     child: const Text('Update Student'),
