@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:student_details/functions/db_functions.dart';
-import 'package:student_details/models/student_model.dart';
+import 'package:student_details/database/functions/db_functions.dart';
 import 'package:student_details/screens/edit_student.dart';
 import 'package:student_details/screens/single_student.dart';
+
+import '../models/student_model.dart';
 
 
 

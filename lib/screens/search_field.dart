@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:student_details/functions/db_functions.dart';
-import 'package:student_details/models/student_model.dart';
+import 'package:student_details/database/functions/db_functions.dart';
 import 'package:student_details/screens/single_student.dart';
+
+import '../database/models/student_model.dart';
 
 class SearchField extends SearchDelegate {
   @override

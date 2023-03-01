@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:student_details/functions/add_student_button.dart';
-import 'package:student_details/models/student_model.dart';
+import 'package:student_details/database/functions/add_student_button.dart';
+import '../models/student_model.dart';
 
 ValueNotifier<List<StudentModel>> studentListNotifier = ValueNotifier([]);
 
