@@ -2,30 +2,71 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_details/database/functions/db_functions.dart';
 import 'package:student_details/screens/add_student.dart';
-
 import '../models/student_model.dart';
 
-Future addStudentButtonClick(BuildContext context) async {
-  final name = nameController.text.trim();
-  final age = ageController.text.trim();
-  final email = emailController.text.trim();
-  final phone = phoneController.text.trim();
+class AddStudentButton extends StatelessWidget {
+  final TextEditingController nameController;
+  final TextEditingController ageController;
+  final TextEditingController emailController;
+  final TextEditingController phoneController;
 
-  final student = StudentModel(
-    name: name,
-    age: age,
-    email: email,
-    phone: phone,
-  );
-  Provider.of<StudentDatabse>(context, listen: false).addStudent(student);
-  snackBar(context, 'Student Added');
+  const AddStudentButton({
+    super.key,
+    required this.nameController,
+    required this.ageController,
+    required this.emailController,
+    required this.phoneController,
+  });
 
-  nameController.clear();
-  ageController.clear();
-  emailController.clear();
-  phoneController.clear();
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: ElevatedButton(
+        onPressed: () {
+          if (validateKey.currentState!.validate()) {
+            addStudentButtonClick(
+              context: context,
+              nameController: nameController,
+              ageController: ageController,
+              emailController: emailController,
+              phoneController: phoneController,
+            );
+          }
+        },
+        child: const Text("Submit"),
+      ),
+    );
+  }
 
-  Navigator.pop(context);
+  Future addStudentButtonClick({
+    required context,
+    required TextEditingController nameController,
+    required TextEditingController ageController,
+    required TextEditingController emailController,
+    required TextEditingController phoneController,
+  }) async {
+    final name = nameController.text.trim();
+    final age = ageController.text.trim();
+    final email = emailController.text.trim();
+    final phone = phoneController.text.trim();
+
+    final student = StudentModel(
+      name: name,
+      age: age,
+      email: email,
+      phone: phone,
+    );
+    Provider.of<StudentDatabse>(context, listen: false).addStudent(student);
+    snackBar(context, 'Student Added');
+
+    nameController.clear();
+    ageController.clear();
+    emailController.clear();
+    phoneController.clear();
+
+    Navigator.pop(context);
+  }
 }
 
 // ============= Snack Bar =============== //

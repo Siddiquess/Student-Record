@@ -45,7 +45,7 @@ class StudentDetails extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const AddStudentData(),
+              builder: (context) =>  AddStudentData(),
             ),
           );
         },

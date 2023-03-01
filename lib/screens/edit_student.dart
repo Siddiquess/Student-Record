@@ -4,8 +4,8 @@ import 'package:student_details/database/functions/db_functions.dart';
 import '../database/models/student_model.dart';
 import '../widgets/text_form_field.dart';
 
-class EditStudent extends StatefulWidget {
-  const EditStudent(
+class EditStudent extends StatelessWidget {
+   EditStudent(
       {super.key,
       required this.name,
       required this.age,
@@ -17,38 +17,24 @@ class EditStudent extends StatefulWidget {
   final String email;
   final String phone;
   final int index;
-  @override
-  State<EditStudent> createState() => _EditStudentState();
-}
-
-class _EditStudentState extends State<EditStudent> {
   final TextEditingController nameController = TextEditingController();
+
   final TextEditingController ageController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController phoneController = TextEditingController();
 
   final formValidateKey = GlobalKey<FormState>();
 
   @override
-  void initState() {
-    nameController.text = widget.name;
-    ageController.text = widget.age;
-    emailController.text = widget.email;
-    phoneController.text = widget.phone;
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    ageController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      nameController.text = name;
+      ageController.text = age;
+      emailController.text = email;
+      phoneController.text = phone;
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Update Student'),
@@ -102,7 +88,7 @@ class _EditStudentState extends State<EditStudent> {
                           phone: phoneController.text,
                         );
                         Provider.of<StudentDatabse>(context, listen: false)
-                            .updateStudent(widget.index, value, context);
+                            .updateStudent(index, value, context);
                       }
                     },
                     child: const Text('Update Student'),

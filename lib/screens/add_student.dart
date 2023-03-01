@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:student_details/widgets/text_form_field.dart';
 import '../database/functions/add_student_button.dart';
 
-final nameController = TextEditingController();
-final ageController = TextEditingController();
-final emailController = TextEditingController();
-final phoneController = TextEditingController();
 final validateKey = GlobalKey<FormState>();
 
-
-
 class AddStudentData extends StatelessWidget {
-  const AddStudentData({
+  AddStudentData({
     super.key,
   });
+
+  final nameController = TextEditingController();
+  final ageController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,17 +57,12 @@ class AddStudentData extends StatelessWidget {
                   isPhone: true,
                 ),
                 // -------------- Button -------------- //
-                Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (validateKey.currentState!.validate()) {
-                        addStudentButtonClick(context);
-                      }
-                    },
-                    child: const Text("Submit"),
-                  ),
-                )
+                AddStudentButton(
+                  nameController: nameController,
+                  ageController: ageController,
+                  emailController: emailController,
+                  phoneController: phoneController,
+                ),
               ],
             ),
           ),
