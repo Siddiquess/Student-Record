@@ -10,6 +10,7 @@ Future<void> main() async {
   if (!Hive.isAdapterRegistered(StudentModelAdapter().typeId)) {
     Hive.registerAdapter(StudentModelAdapter());
   } 
+  await Hive.openBox<StudentModel>("student_db");
     runApp(const MyApp());
   
 }

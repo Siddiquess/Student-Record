@@ -1,8 +1,7 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:student_details/database/functions/db_functions.dart';
-
 import '../database/models/student_model.dart';
+import '../widgets/text_form_field.dart';
 
 class EditStudent extends StatefulWidget {
   const EditStudent(
@@ -58,102 +57,55 @@ class _EditStudentState extends State<EditStudent> {
         key: formValidateKey,
         child: ListView(
           children: [
-            Column(
-              children: [
-                // -------------- TextField 1 -------------- //
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: TextFormField(
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  // -------------- TextField 1 -------------- //
+                  TextFormWidget(
                     controller: nameController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Name is required';
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        labelText: 'Name of Student'),
+                    labelText: "Name of student",
+                    validateText: "Name is required",
+                    keyType: TextInputType.name,
                   ),
-                ),
-                // -------------- TextField 2 -------------- //
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: TextFormField(
+                  // -------------- TextField 2 -------------- //
+                  TextFormWidget(
                     controller: ageController,
-                    keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Age is required';
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        labelText: 'Age'),
+                    labelText: 'Age',
+                    validateText: "Age is required",
+                    keyType: TextInputType.number,
                   ),
-                ),
-                // -------------- TextField 3 -------------- //
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
+                  // -------------- TextField 3 -------------- //
+                  TextFormWidget(
                     controller: emailController,
-                    validator: (email) {
-                      if (email != null && !EmailValidator.validate(email)) {
-                        return 'Enter valid email';
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        labelText: 'Email address'),
+                    labelText: 'Email Address',
+                    validateText: "Enter valid email",
+                    keyType: TextInputType.emailAddress,
+                    isEmail: true,
                   ),
-                ),
-                // -------------- TextField 4 -------------- //
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: TextFormField(
+                  // -------------- TextField 4 -------------- //
+                  TextFormWidget(
                     controller: phoneController,
-                     keyboardType: TextInputType.phone,
-                    validator: (value) {
-                      if (value == null || value.isEmpty || value.length != 10) {
-                        return 'Enter valid number';
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        prefixText:'+91' ,
-                        prefixStyle: const TextStyle(color: Colors.black,fontSize: 16),
-                        labelText: 'Phone'),
+                    labelText: "Phone Number",
+                    validateText: 'Enter valid number',
+                    keyType: TextInputType.number,
                   ),
-                ),
-                // -------------- Button -------------- //
-                ElevatedButton(
+                  // -------------- Button -------------- //
+                  ElevatedButton(
                     onPressed: () {
                       if (formValidateKey.currentState!.validate()) {
                         final value = StudentModel(
-                            name: nameController.text,
-                            age: ageController.text,
-                            email: emailController.text,
-                            phone: phoneController.text);
+                          name: nameController.text,
+                          age: ageController.text,
+                          email: emailController.text,
+                          phone: phoneController.text,
+                        );
                         updateStudent(widget.index, value, context);
                       }
                     },
-                    child: const Text('Update Student'))
-              ],
+                    child: const Text('Update Student'),
+                  )
+                ],
+              ),
             ),
           ],
         ),

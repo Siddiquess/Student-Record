@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_details/database/functions/db_functions.dart';
 import 'package:student_details/database/functions/student_list.dart';
-import 'package:student_details/screens/bottom_sheet.dart';
+import 'package:student_details/screens/add_student.dart';
 import 'package:student_details/screens/search_field.dart';
 
 class StudentDetails extends StatelessWidget {
@@ -16,14 +16,35 @@ class StudentDetails extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {
-                showSearch(context: context, delegate: SearchField());
-              },
-              icon: const Icon(Icons.search))
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchField(),
+              );
+            },
+            icon: const Icon(Icons.search),
+          )
         ],
       ),
-      body: const StudentList(),
-      floatingActionButton: const BottomSheets(),
+      body: ValueListenableBuilder(
+        valueListenable: studentListNotifier,
+        builder: (context, value, child) {
+          return value.isEmpty
+              ? const Center(child: Text("No data found"))
+              : const StudentListBuilder();
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.person_add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddStudentData(),
+            ),
+          );
+        },
+      ),
     );
   }
 }
