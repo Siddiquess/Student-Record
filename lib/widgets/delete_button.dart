@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../database/functions/db_functions.dart';
+import '../database/functions/provider/db_functions.dart';
 
 class DeleteButton extends StatelessWidget {
   const DeleteButton({

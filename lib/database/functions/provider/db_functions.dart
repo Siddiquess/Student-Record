@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:student_details/database/functions/add_student_button.dart';
-import '../models/student_model.dart';
+import '../../models/student_model.dart';
 
 class StudentDatabse with ChangeNotifier {
  static List<StudentModel> studentListData = [];

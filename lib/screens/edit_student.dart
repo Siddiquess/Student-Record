@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:student_details/database/functions/db_functions.dart';
+import 'package:student_details/database/functions/provider/db_functions.dart';
 import '../database/models/student_model.dart';
 import '../widgets/text_form_field.dart';
 

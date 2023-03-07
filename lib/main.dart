@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'package:student_details/database/functions/db_functions.dart';
+import 'package:student_details/database/functions/provider/db_functions.dart';
 import 'package:student_details/screens/student_details.dart';
 
 import 'database/models/student_model.dart';
