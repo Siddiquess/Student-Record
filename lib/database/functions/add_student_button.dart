@@ -75,7 +75,7 @@ void snackBar(BuildContext context, String info) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       duration: const Duration(seconds: 1),
-      width: MediaQuery.of(context).size.width * 0.5,
+      width: MediaQuery.of(context).size.width * 0.6,
       behavior: SnackBarBehavior.floating,
       shape: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
       content: SizedBox(

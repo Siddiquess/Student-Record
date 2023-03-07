@@ -21,7 +21,7 @@ class StudentDatabse with ChangeNotifier {
   Future<void> deleteStudent(int id, ctx) async {
     await studentDB.deleteAt(id);
     getAllStudents();
-    snackBar(ctx, 'Deleted');
+    snackBar(ctx, 'Deleted Successflully');
     Navigator.pop(ctx);
   }
 
@@ -29,6 +29,6 @@ class StudentDatabse with ChangeNotifier {
     await studentDB.putAt(id, value);
     getAllStudents();
     Navigator.pop(ctx);
-    snackBar(ctx, 'updated');
+    snackBar(ctx, 'Updated Successflully');
   }
 }

@@ -12,7 +12,8 @@ class StudentDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
-        Provider.of<StudentDatabse>(context, listen: false).getAllStudents();
+        // Provider.of<StudentDatabse>(context, listen: false).getAllStudents();
+        context.read<StudentDatabse>().getAllStudents();
       },
     );
 
@@ -45,7 +46,7 @@ class StudentDetails extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>  AddStudentData(),
+              builder: (context) => AddStudentData(),
             ),
           );
         },
